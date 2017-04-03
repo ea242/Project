@@ -10,7 +10,9 @@ if ($action === NULL) {
     }
 }
 
-if ($action == 'under_construction') {
-    include('../under_construction.php');
+switch ($action) {
+    case 'under_construction':
+        include('../under_construction.php');
+        break;
 }
 ?>
