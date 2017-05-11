@@ -23,7 +23,7 @@
             </tr>
             <?php foreach ($customers as $customer) : ?>
             <tr>
-                <td><?php echo $customer->getFirstName() . " " . $customer->getLastName(); ?></td>
+                <td><?php echo $customer->getFullName(); ?></td>
                 <td><?php echo $customer->getEmail(); ?></td>
                 <td><?php echo $customer->getCity(); ?></td>
                 <td><form action="." method="post">
