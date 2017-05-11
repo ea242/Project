@@ -89,6 +89,7 @@ class CustomerDB {
                         city = '$city',
                         state = '$state',
                         postalCode = '$postalCode',
+                        countryCode = '$countryCode',
                         phone = '$phone',
                         email = '$email',
                         password = '$password'

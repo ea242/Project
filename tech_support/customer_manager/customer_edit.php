@@ -29,7 +29,18 @@
         <br>
 
         <label>Country Code:</label>
-        <input type="text" name="countryCode" value="<?php echo $customer->getCountryCode();?>"/>
+        <select name="countryCode"> 
+            <?php foreach ($countries as $country){
+                $cid = $country->getCountryCode();
+                $cname = $country->getCountryName();
+                if($customer->getCountryCode() == $cid){
+                    print "<option value='$cid' selected>$cname</option>";
+                }else{
+                    print "<option value='$cid'>$cname</option>";
+                }
+            }
+            ?>
+        </select>
         <br>
 
         <label>Phone:</label>
