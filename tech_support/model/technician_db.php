@@ -15,6 +15,7 @@ class TechnicianDB {
             $technician->setTechID($row['techID']);
             $technicians[] = $technician;
         }
+        Database::closeDB();
         return $technicians;
     }
 
@@ -23,6 +24,7 @@ class TechnicianDB {
         $query = "DELETE FROM technicians
                   WHERE techID = '$techID'";
         $row_count = $db->exec($query);
+        Database::closeDB();
         return $row_count;
     }
 
@@ -42,6 +44,7 @@ class TechnicianDB {
                  ('$firstName', '$lastName', '$email', '$phone', '$password')";
 
         $row_count = $db->exec($query);
+        Database::closeDB();
         return $row_count;
     }
 }

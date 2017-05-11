@@ -68,6 +68,7 @@ class ProductDB {
                                    $row['releaseDate']);
             $products[] = $product;
         }
+        Database::closeDB();
         return $products;
     }
 
@@ -76,6 +77,7 @@ class ProductDB {
         $query = "DELETE FROM tech_products
                   WHERE productCode = '$productCode'";
         $row_count = $db->exec($query);
+        Database::closeDB();
         return $row_count;
     }
 
@@ -94,6 +96,7 @@ class ProductDB {
                  ('$code', '$name', '$version', '$date')";
 
         $row_count = $db->exec($query);
+        Database::closeDB();
         return $row_count;
     }
 }

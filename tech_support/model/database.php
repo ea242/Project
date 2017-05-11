@@ -21,5 +21,9 @@ class Database {
         }
         return self::$db;
     }
+
+    public static function closeDB () {
+        self::$db = null;
+    }
 }
 ?>
