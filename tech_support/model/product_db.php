@@ -33,6 +33,20 @@ class ProductDB {
         return $products;
     }
 
+    function set_product_registered($customerID, $productID) {
+        $db = Database::getDB();
+        $date = "2017-05-11";
+        $query =
+            "INSERT INTO registrations
+                 (customerID, productCode, registrationDate)
+             VALUES
+                 ('$customerID', '$productID', '$date')";
+
+        $row_count = $db->exec($query);
+
+        Database::closeDB();
+    }
+
     public static function deleteProduct($productCode) {
         $db = Database::getDB();
         $query = "DELETE FROM tech_products

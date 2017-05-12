@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('../model/database.php');
 
 require('../model/product.php');
@@ -19,8 +20,15 @@ if ($action === NULL) {
 }
 
 switch ($action) {
-    case 'login_screen':
-        include('customer_login.php');
+    case 'login_screen': 
+        if(empty($_SESSION["email"])) {
+            include('customer_login.php');
+        }else{
+            $email = $_SESSION["email"];
+            $customer = CustomerDB::get_customer_email($email);
+            $products = ProductDB::get_products();
+            include('register_product_form.php');
+        }
     break;
     case 'customer_verify':
         $email = filter_input(INPUT_POST, 'email');
@@ -37,6 +45,7 @@ switch ($action) {
         } else {
             $customer = CustomerDB::get_customer_email($email);
             if(!empty($customer->getFirstName())){
+                $_SESSION["email"] = $email;
                 $products = ProductDB::get_products();
                 include('register_product_form.php');
             }else{
@@ -49,9 +58,15 @@ switch ($action) {
         $customerID = filter_input(INPUT_POST, 'customerID');
         $productID = filter_input(INPUT_POST, 'productID');
 
-        //logic needed for registering product
+        ProductDB::set_product_registered($customerID, $productID);
         
         include('register_product.php');
+    break;
+    case 'logout':
+        session_unset(); 
+        session_destroy(); 
+        
+        header("Location: .?action=login_screen");
     break;
 }
 ?>
